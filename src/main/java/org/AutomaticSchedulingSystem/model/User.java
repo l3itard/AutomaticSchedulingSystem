@@ -1,24 +1,22 @@
 package org.AutomaticSchedulingSystem.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer userId;
-    @Column
     private String name;
-    @Column
     private String surname;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "universityId")
+    @JoinColumn()
     private University university;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Request> requests;
+    private Set<Request> requests = new HashSet<>();
 
     public User() {
     }
@@ -55,11 +53,11 @@ public class User {
         this.university = university;
     }
 
-    public List<Request> getRequests() {
+    public Set<Request> getRequests() {
         return requests;
     }
 
-    public void setRequests(List<Request> requests) {
+    public void setRequests(Set<Request> requests) {
         this.requests = requests;
     }
 

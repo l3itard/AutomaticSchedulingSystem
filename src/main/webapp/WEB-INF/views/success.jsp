@@ -11,6 +11,6 @@
     <title>Success</title>
 </head>
 <body>
-#{success}
+<H1>${success}</H1>
 </body>
 </html>

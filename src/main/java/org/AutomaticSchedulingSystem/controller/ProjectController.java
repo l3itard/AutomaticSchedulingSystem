@@ -1,6 +1,8 @@
 package org.AutomaticSchedulingSystem.controller;
 
 import org.AutomaticSchedulingSystem.model.Request;
+import org.AutomaticSchedulingSystem.service.RequestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class ProjectController {
+    @Autowired
+    private RequestService rs;
+
     @RequestMapping(method = RequestMethod.GET)
     public String newRequest(ModelMap model) {
         Request request = new Request();
@@ -26,6 +31,7 @@ public class ProjectController {
     public String saveRequest(@Valid Request request, BindingResult result, ModelMap model) {
         if (result.hasErrors())
             return "request";
+        rs.add(request);
         model.addAttribute("success", "Your data successfully updated for requestId " + request.getRequestId());
         return "success";
     }

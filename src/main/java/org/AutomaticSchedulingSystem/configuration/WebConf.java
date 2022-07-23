@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-//@ComponentScan(basePackages = "org.AutomaticSchedulingSystem")
+@ComponentScan(basePackages = "org.AutomaticSchedulingSystem")
 public class WebConf implements WebMvcConfigurer {
     @Bean
     public ViewResolver viewResolver() {

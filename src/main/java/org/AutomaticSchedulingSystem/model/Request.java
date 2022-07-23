@@ -1,22 +1,18 @@
 package org.AutomaticSchedulingSystem.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table
-public class Request {
+public class Request implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer requestId;
-    @Column
     private int studyGroup;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @JoinColumn()
     private User user;
-    @Column
     private String discipline;
-    @Column
     private int numberOfClasses;
 
     public Request() {
